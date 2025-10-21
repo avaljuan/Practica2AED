@@ -181,17 +181,17 @@ ggsave('figs/Ejercicio1.pdf')
 ```{r Solucion ejercicio 2}
 rm(list=ls())
 load("data/weatherAUS.RData")
-grafico1 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am)) 
+grafico1 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am)) + geom_point()
 
-grafico1+ geom_point()
+grafico1
 
-grafico2 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, shape = RainToday))
+grafico2 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, shape = RainToday)) + geom_point()
 
-grafico2 + geom_point()
+grafico2 
 
-grafico3 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, color = RainToday))
+grafico3 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, color = RainToday)) + geom_point()
 
-grafico3 + geom_point()
+grafico3
 
 grafico4 <- grafico3 + labs(title = "Probabilidad de lluvia según condiciones meteorológicas", subtitle = "Relación entre temperatura y presión atmosférica a las 9 AM", x = "Temperatura 9AM(ºC)", y = "Presión atmosférica 9AM(mb)") 
 grafico4 + geom_point()
@@ -211,9 +211,37 @@ Podemos observar que el gráfico con represetnación por colores según `RainTod
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+#1
+rm(list=ls())
+load("data/iris_tidy.RData")
+#2
+str(iris.tidy)
 
+#3,4
+iris.grafico1 <- ggplot(data = iris.tidy, mapping = aes(x = Species, y = Value))
+
+iris.grafico1_disp <- iris.grafico1 + geom_point()
+
+iris.grafico1_disp
+
+#5
+iris.grafico2 <- ggplot(data = iris.tidy, mapping = aes(x = Species, y = Value, color = Part)) + geom_point()
+
+iris.grafico2
+
+#6
+
+iris.grafico3 <- iris.grafico2 + facet_grid(Measure~.)
+iris.grafico3
+iris.grafico4 <- iris.grafico2 + facet_grid(.~Measure)
+iris.grafico4
+
+#7
+iris.grafico5 <- ggplot(data = iris.tidy, mapping = aes(x = Species, y = Value, color = Part)) + geom_jitter() + facet_grid(.~Measure)
+iris.grafico5
 ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
+En las figuras donde disponemos vertical u horizaontalmente según `Part`, se comparan mejor los valores de las dos variables si se disponen en 2 columnas, ya que los valores se organizan de forma vertical.
 
 ## Gráficos de línea con **ggplot2**
 

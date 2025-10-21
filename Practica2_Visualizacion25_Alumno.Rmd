@@ -322,8 +322,27 @@ ggplot(data=Dosis.Medicina2, aes(x=Dosis, y=Efectividad, group=Complemento)) +
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio4.pdf``.
 
 ```{r Solucion ejercicio 4}
+rm(list=ls())
+load("data/Ejercicio4_Data.RData")
+str(DatosEjer4)
 
+grafico_1 <- ggplot(data = DatosEjer4, mapping = aes(x= Fecha, y = Ventas, color = Fabricante)) + geom_point()
+
+grafico_1
+
+grafico_2 <- ggplot(data = DatosEjer4, mapping = aes(x= Fecha, y = Ventas, color = Fabricante)) + geom_point()+ geom_line()
+
+grafico_3 <- ggplot(data = DatosEjer4, mapping = aes(x= Fecha, y = Ventas, color = Fabricante)) + geom_point()+ geom_line(mapping=aes(linetype = Fabricante))
+
+grafico_3
+
+grafico_4 <- grafico_3 + ggtitle("Ventas mensuales de difernetes compañías tecnológicas")
+
+grafico_4
+
+ggsave("figs/Ejercicio4.pdf")
 ```
+El gráfico 1 es válido para evaluar las ventas de cada fabricante, ya que se diferencian bien la evolución en el tiempo de las ventas para cada fabricante.
 
 ## Barras de error con **ggplot2**
 

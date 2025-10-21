@@ -193,8 +193,9 @@ grafico3 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, color = RainToda
 
 grafico3 + geom_point()
 
-grafico4 <- grafico3 + labs(title = "Probabilidad de lluvia según condiciones meteorológicas", subtitle = "Relación entre temperatura y presión atmosférica a las 9 AM") 
-#ggsave('figs/Ejercicio2.pdf')
+grafico4 <- grafico3 + labs(title = "Probabilidad de lluvia según condiciones meteorológicas", subtitle = "Relación entre temperatura y presión atmosférica a las 9 AM", x = "Temperatura 9AM(ºC)", y = "Presión atmosférica 9AM(mb)") 
+grafico4 + geom_point()
+ggsave('figs/Ejercicio2.pdf')
 ```
 Podemos observar que el gráfico con represetnación por colores según `RainToday` es mejor que el de la representación por forma.
 

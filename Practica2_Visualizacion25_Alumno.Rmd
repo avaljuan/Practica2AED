@@ -157,7 +157,16 @@ p2
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio1.pdf``.
 
 ```{r Solucion ejercicio 1}
+rm(list=ls())
+load("data/weatherAUS.RData")
+p_simple <- ggplot(data = ds , aes(x = MinTemp, y = MaxTemp))
+p_disp <- p_simple + geom_point()
+p_disp
+grafico2 <- ggplot(data = ds, aes(x = MinTemp, y = MaxTemp, color = RainTomorrow)) + geom_point()
+grafico2
 
+grafico3 <- grafico2 + ggtitle("Relación entre temperaturas máxima y mínima y probabilidad de lluvia")
+grafico3
 ggsave('figs/Ejercicio1.pdf')
 ```
 
@@ -170,9 +179,24 @@ ggsave('figs/Ejercicio1.pdf')
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio2.pdf``.
 
 ```{r Solucion ejercicio 2}
+rm(list=ls())
+load("data/weatherAUS.RData")
+grafico1 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am)) 
 
-ggsave('figs/Ejercicio2.pdf')
+grafico1+ geom_point()
+
+grafico2 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, shape = RainToday))
+
+grafico2 + geom_point()
+
+grafico3 <- ggplot(data = ds, aes(x = Temp9am, y = Pressure9am, color = RainToday))
+
+grafico3 + geom_point()
+
+grafico4 <- grafico3 + labs(title = "Probabilidad de lluvia según condiciones meteorológicas", subtitle = "Relación entre temperatura y presión atmosférica a las 9 AM") 
+#ggsave('figs/Ejercicio2.pdf')
 ```
+Podemos observar que el gráfico con represetnación por colores según `RainToday` es mejor que el de la representación por forma.
 
 ### **Ejercicio 3**
 
